@@ -42,3 +42,30 @@ class Solution:
                             numList[int(board[k][l])] -= 1
 
         return True
+
+# Reimplementing official solution
+# O(n^2) time complexity, where
+# n : side length of sudoku board 
+
+class Solution:
+    def isValidSudoku(self, board: List[List[str]]) -> bool:
+        cols = defaultdict(set)
+        rows = defaultdict(set)
+        sqrs = defaultdict(set)
+
+        for r in range(9):
+            for c in range(9):
+                pos = board[r][c]
+                if pos == ".":
+                    continue
+                
+                if (pos in rows[r] 
+                    or pos in cols[c] 
+                    or pos in sqrs[(r // 3, c // 3)]):
+                    return False
+                
+                rows[r].add(pos)
+                cols[c].add(pos)
+                sqrs[(r // 3, c // 3)].add(pos)
+        
+        return True
