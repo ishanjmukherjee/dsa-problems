@@ -19,3 +19,5 @@ class Solution:
         for i, h in enumerate(height):
             area += max(min(leftMaxs[i], rightMaxs[i]) - h, 0)
         return area
+
+# TO DO: Implement official solution with O(1) space
