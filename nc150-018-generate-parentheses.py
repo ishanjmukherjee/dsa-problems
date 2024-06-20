@@ -5,7 +5,7 @@
 # Then, evaluate members of this list which are valid using a stack.
 # Doesn't exceed time limit on Leetcode, but beats only ~5% of submissions in
 # runtime and memory
-# O(2^n) time complexity (saved only because n is small), where
+# O(2^n) time complexity (I was saved only because n is small), where
 # n : argument 
 
 class Solution:
