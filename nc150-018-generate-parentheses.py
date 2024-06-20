@@ -1,7 +1,7 @@
 # My solution
 # Approach: generate all possible combinations of n "("s and n ")"s.
 # This will create a list 2^(2*n) long (2 options, open and closed, for each
-# position.
+# position).
 # Then, evaluate members of this list which are valid using a stack.
 # Doesn't exceed time limit on Leetcode, but beats only ~5% of submissions in
 # runtime and memory
