@@ -54,3 +54,26 @@ class Solution:
             else:
                 evalStack.append(int(c))
         return evalStack.pop()
+
+# New attempt: revisiting
+
+class Solution:
+    def evalRPN(self, tokens: List[str]) -> int:
+        stack = []
+        for token in tokens:
+            if token not in "+-*/": # is a number
+                stack.append(int(token))
+            elif token == "+":
+                stack.append(stack.pop() + stack.pop())
+            elif token == "-":
+                # not production quality code because it's hard to read
+                # the Correct Way of Doing This is
+                #   rOperand, lOperand = stack.pop(), stack.pop()
+                #   stack.append(lOperand - rOperand)
+                stack.append(- (stack.pop() - stack.pop()))
+            elif token == "*":
+                stack.append(stack.pop() * stack.pop())
+            else: # token == "/"
+                rOperand, lOperand = stack.pop(), stack.pop()
+                stack.append(int(lOperand / rOperand))
+        return stack.pop()
