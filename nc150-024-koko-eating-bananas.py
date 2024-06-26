@@ -41,3 +41,23 @@ class Solution:
                 l = midVal + 1
         return ans
             
+# New attempt: revisiting
+
+from math import ceil
+
+class Solution:
+    def minEatingSpeed(self, piles: List[int], h: int) -> int:
+        l, r = 1, max(piles)
+        minSpeed = max(piles)
+        while l <= r:
+            mid = l + (r - l) // 2
+            hCurr = 0
+            for pile in piles:
+                hCurr += ceil(pile / mid)
+            if hCurr <= h:
+                minSpeed = min(minSpeed, mid) # missed the slight optimization of 
+                                              # setting to mid directly
+                r = mid - 1
+            else:
+                l = mid + 1
+        return minSpeed
