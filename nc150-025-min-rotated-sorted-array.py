@@ -13,3 +13,17 @@ class Solution:
             else:
                 r = mid
         return nums[l]
+
+# New attempt: revisiting
+
+class Solution:
+    def findMin(self, nums: List[int]) -> int:
+        l, r = 0, len(nums) - 1
+        while l < r: # <= causes an infinite loop, as r is set to mid, which is l,
+                     # in an array of length 2
+            mid = l + (r - l) // 2
+            if nums[mid] > nums[r]:
+                l = mid + 1
+            else:
+                r = mid
+        return nums[l]
