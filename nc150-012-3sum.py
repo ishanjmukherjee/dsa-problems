@@ -62,3 +62,31 @@ class Solution:
                     while nums[l] == nums[l-1] and l < r:
                         l += 1
         return ans
+
+# New attempt: revisiting
+
+class Solution:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        nums.sort()
+        ans = []
+        for i, num in enumerate(nums):
+            if i > 0 and num == nums[i-1]:
+                continue
+            goal = -num
+            l, r = i+1, len(nums) - 1
+            while l < r:
+                if nums[l] + nums[r] < goal:
+                    l += 1
+                elif nums[l] + nums[r] > goal:
+                    r -= 1
+                else:
+                    ans.append([num, nums[l], nums[r]])
+                    l += 1
+                    r -= 1
+                    # realized the problem, but didn't recall the trick 
+                    # below; without this line, the test case with
+                    # nums=[-2,0,0,2,2] (output should be [[-2,0,2]])
+                    # fails
+                    while nums[l] == nums[l-1] and l < r:
+                        l += 1
+        return ans
