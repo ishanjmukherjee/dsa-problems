@@ -39,3 +39,19 @@ class Solution:
         return r - l + 1 # don't need to track maxLen because l is 
                          # incremented on every loop iteration after
                          # maximum-length substring is found
+
+# New attempt 1: revisiting
+# Reimplementing official solution
+
+class Solution:
+    def characterReplacement(self, s: str, k: int) -> int:
+        cFreqs = {}
+        maxf = 0
+        l = 0
+        for r in range(len(s)):
+            cFreqs[s[r]] = cFreqs.get(s[r], 0) + 1
+            maxf = max(maxf, cFreqs[s[r]])
+            if r - l + 1 - maxf > k:
+                cFreqs[s[l]] -= 1
+                l += 1
+        return r - l + 1
