@@ -48,3 +48,18 @@ class Solution:
                 count[ord(c) - ord('a')] += 1
             anagramGroups[tuple(count)].append(s)
         return anagramGroups.values()  
+
+# New attempt: revisiting
+
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        anagramDict = defaultdict(list)
+        for s in strs:
+            sDict = [0] * 26
+            for c in s:
+                sDict[ord(c) - ord('a')] += 1
+            # I forgot this trick to tuple() the list to make it immutable
+            # and thus a valid key
+            anagramDict[tuple(sDict)].append(s)
+        return anagramDict.values()
+        
